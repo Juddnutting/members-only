@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create, :index]
   
   get 'login'   => 'sessions#new'
-  #post 'login'  => 'sessions#create'
-  #root 'static_pages#home'
+  delete 'logout' => 'sessions#destroy'
+  post 'login'  => 'sessions#create'
+  get 'new_post' => 'posts#new'
   root 'posts#index'
   
   #root 'application#index'

@@ -1,9 +1,17 @@
-<h1> Posts </h1>
 
-<ul class="posts">
-    <%= @posts.each do |post| %>
+ <div class="row">
+    <div class="col-md-6 col-md-offset-1">
+    <h1> Posts </h1>
 
-        <p> <%= post.body %> </p>
-    <%end%>
-        
-</ul>
+    <% @posts.each do |post| %>
+        <% if logged_in? %>
+            <h4>Written by: <%= post.user.username %></h4>
+        <%else%>
+            <h4> Written by: <%=link_to "Log in to see", login_path %></h4>
+        <%end%>
+      
+        <%= post.body %>  </br></br>
+    <% end %>
+</br></br>
+</div>
+</div>

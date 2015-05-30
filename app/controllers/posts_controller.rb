@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_filter :logged_in?, only: [:new, :create]
+    before_filter :logged_in_user?, only: [:new, :create]
     
     def new
         @post = Post.new
@@ -24,4 +24,12 @@ class PostsController < ApplicationController
         def post_params
             params.require(:post).permit(:body)
         end
+        
+        def logged_in_user?
+            unless logged_in?
+                redirect_to login_path
+                flash[:danger] = "You must log in to post"
+            end
+        end
+        
 end
